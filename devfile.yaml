@@ -26,6 +26,8 @@ components:
           value: /usr/lib/jvm/java-8-openjdk
         - name: MAVEN_OPTS
           value: "-Xmx512m"
+        - name: SERVER_ADDRESS
+          value: "0.0.0.0"
       mountSources: true
 
 commands:
