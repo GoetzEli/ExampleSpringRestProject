@@ -17,6 +17,8 @@ components:
           targetPort: 8080
           exposure: public
           protocol: http
+          secure: false
+          path: /
         - name: debug
           targetPort: 5005
           exposure: internal
