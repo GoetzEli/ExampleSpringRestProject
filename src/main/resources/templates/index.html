@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Greeting Service</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+        }
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+            padding: 48px 40px;
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+        }
+        .logo { font-size: 56px; margin-bottom: 16px; }
+        h1 { font-size: 2rem; color: #1a73e8; margin-bottom: 8px; }
+        .subtitle { color: #666; font-size: 1rem; margin-bottom: 32px; }
+        .endpoints { text-align: left; margin-bottom: 32px; }
+        .endpoints h2 { font-size: 1.1rem; color: #333; margin-bottom: 12px; }
+        .endpoint-item {
+            background: #f5f8ff;
+            border-left: 4px solid #1a73e8;
+            border-radius: 4px;
+            padding: 10px 14px;
+            margin-bottom: 10px;
+        }
+        .endpoint-item code { font-size: 0.95rem; color: #0d47a1; word-break: break-all; }
+        .endpoint-item p { font-size: 0.85rem; color: #555; margin-top: 4px; }
+        .btn-group { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: background 0.2s, transform 0.1s;
+        }
+        .btn-primary { background: #1a73e8; color: #fff; }
+        .btn-primary:hover { background: #1558c0; transform: translateY(-1px); }
+        .btn-secondary { background: #e8f0fe; color: #1a73e8; }
+        .btn-secondary:hover { background: #c5d8fc; transform: translateY(-1px); }
+        .footer { margin-top: 32px; font-size: 0.8rem; color: #aaa; }
+    </style>
+</head>
+<body>
+<div class="card">
+    <div class="logo">👋</div>
+    <h1>Course Greeting Service</h1>
+    <p class="subtitle">A Spring Boot REST API that returns multilingual greetings.</p>
+
+    <div class="endpoints">
+        <h2>Available Endpoints</h2>
+        <div class="endpoint-item">
+            <code>GET /v1/api/greetings?lang={de|en|fr|es}</code>
+            <p>Returns a greeting in the requested language. Requires a <em>username</em> header.</p>
+        </div>
+        <div class="endpoint-item">
+            <code>GET /v1/api/greetings/version</code>
+            <p>Returns the current version of the service.</p>
+        </div>
+    </div>
+
+    <div class="btn-group">
+        <a href="/v1/api/greetings/version" class="btn btn-primary">Check Version</a>
+        <a href="/swagger-ui.html" class="btn btn-secondary">API Docs (Swagger)</a>
+    </div>
+
+    <div class="footer">Demo project &mdash; Cloud Computing Course</div>
+</div>
+</body>
+</html>

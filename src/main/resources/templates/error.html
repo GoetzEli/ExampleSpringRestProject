@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error - Course Greeting Service</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #c62828 0%, #6a1b1a 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+        }
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.22);
+            padding: 48px 40px;
+            max-width: 520px;
+            width: 90%;
+            text-align: center;
+        }
+        .icon { font-size: 64px; margin-bottom: 16px; }
+        h1 { font-size: 2rem; color: #c62828; margin-bottom: 8px; }
+        .status-code { font-size: 4rem; font-weight: 700; color: #e53935; margin-bottom: 8px; }
+        .message { color: #555; font-size: 1rem; margin-bottom: 12px; }
+        .error-detail {
+            background: #fff3f3;
+            border-left: 4px solid #e53935;
+            border-radius: 4px;
+            padding: 10px 14px;
+            margin-bottom: 28px;
+            text-align: left;
+            font-size: 0.9rem;
+            color: #b71c1c;
+            word-break: break-word;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            background: #c62828;
+            color: #fff;
+            transition: background 0.2s, transform 0.1s;
+        }
+        .btn:hover { background: #a31515; transform: translateY(-1px); }
+        .footer { margin-top: 28px; font-size: 0.8rem; color: #aaa; }
+    </style>
+</head>
+<body>
+<div class="card">
+    <div class="icon">⚠️</div>
+    <div class="status-code" th:text="${status}">Error</div>
+    <h1 th:text="${error}">Something went wrong</h1>
+    <p class="message">An unexpected error occurred while processing your request.</p>
+    <div class="error-detail" th:if="${message}" th:text="${message}"></div>
+    <a href="/" class="btn">Back to Home</a>
+    <div class="footer">Course Greeting Service &mdash; Cloud Computing Course</div>
+</div>
+</body>
+</html>
