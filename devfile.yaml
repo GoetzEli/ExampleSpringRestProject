@@ -1,0 +1,63 @@
+schemaVersion: 2.2.0
+metadata:
+  name: example-spring-rest-project
+  description: Eclipse Che devfile for ExampleSpringRestProject (Spring Boot REST, Java 8, Maven)
+  version: 0.0.1
+
+components:
+  - name: tools
+    container:
+      image: quay.io/devfile/universal-developer-image:ubi9-latest
+      memoryLimit: 1512Mi
+      memoryRequest: 256Mi
+      cpuLimit: "2"
+      cpuRequest: "0.5"
+      endpoints:
+        - name: spring-boot
+          targetPort: 8080
+          exposure: public
+          protocol: http
+          secure: false
+          path: /
+        - name: debug
+          targetPort: 5005
+          exposure: internal
+          protocol: tcp
+      env:
+        - name: JAVA_HOME
+          value: /usr/lib/jvm/java-8-openjdk
+        - name: MAVEN_OPTS
+          value: "-Xmx512m"
+        - name: SERVER_ADDRESS
+          value: "0.0.0.0"
+      mountSources: true
+
+commands:
+  - id: build
+    exec:
+      label: "Build"
+      component: tools
+      workingDir: ${PROJECT_SOURCE}
+      commandLine: "mvn clean package -DskipTests"
+
+  - id: test
+    exec:
+      label: "Test"
+      component: tools
+      workingDir: ${PROJECT_SOURCE}
+      commandLine: "mvn test"
+
+  - id: run
+    exec:
+      label: "Run"
+      component: tools
+      workingDir: ${PROJECT_SOURCE}
+      commandLine: "mvn spring-boot:run"
+      hotReloadCapable: true
+
+  - id: debug
+    exec:
+      label: "Debug"
+      component: tools
+      workingDir: ${PROJECT_SOURCE}
+      commandLine: "mvn spring-boot:run -Dspring-boot.run.jvmArguments=\"-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005\""
